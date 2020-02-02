@@ -1,6 +1,14 @@
 from konlpy.tag import Twitter 
 from collections import Counter
 
+from wordcloud import WordCloud 
+import matplotlib.pyplot as plt 
+import nltk 
+from nltk.corpus import stopwords
+ 
+import matplotlib 
+from IPython.display import set_matplotlib_formats
+
 file = open("./input.txt", 'r') 
 lists = file.readlines() 
 file.close()
@@ -24,6 +32,19 @@ print(noun_adj_adv_list)
 count = Counter(noun_adj_adv_list)
 words = dict(count.most_common())
 print(words)
+
+matplotlib.rc('font',family = 'Malgun Gothic') 
+set_matplotlib_formats('retina') 
+matplotlib.rc('axes',unicode_minus = False)
+
+wordcloud = WordCloud(font_path = './Arial.ttf', background_color='white',colormap = "Accent_r", width=1500, height=1000).generate_from_frequencies(words) 
+plt.imshow(wordcloud) 
+plt.axis('off') 
+plt.show()
+
+
+
+
 
 
 
