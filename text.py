@@ -1,19 +1,24 @@
-from konlpy.tag import Twitter 
-from collections import Counter
+from konlpy.tag import Twitter # 한글 형태소 추출
+from collections import Counter # count
 
-from wordcloud import WordCloud 
-import matplotlib.pyplot as plt 
-import nltk 
+from wordcloud import WordCloud # 텍스트 시각화
+import matplotlib.pyplot as plt # 시각화 패키지
+
+import nltk # natural language toolkit
 from nltk.corpus import stopwords
  
 import matplotlib 
 from IPython.display import set_matplotlib_formats
 
-import requests
-from bs4 import BeautifulSoup
+import requests # 웹 request 
+from bs4 import BeautifulSoup # 웹 크롤링 패키지 
 
-# url에서 html 객체 가져오기
-res = requests.get('http://www.ciokorea.com/t/27240/%EB%8D%B0%EB%B8%8C%EC%98%B5%EC%8A%A4/129646')
+# url에서 source 가져오기
+# res = requests.get('http://www.ciokorea.com/t/27240/%EB%8D%B0%EB%B8%8C%EC%98%B5%EC%8A%A4/129646')
+res = requests.get('http://www.ciokorea.com/news/33848')
+# res = requests.get('http://www.ciokorea.com/column/119945')
+
+# html 객체로 변환
 soup = BeautifulSoup(res.content, 'html.parser')
 
 # 기사 본문 가져오기
